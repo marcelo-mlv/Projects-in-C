@@ -8,7 +8,7 @@ int main() {
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     printf("    This is a calendar program written in C\n");
     printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-    printf("\nType in 2 dates and we'll show you how many days there are between them!\n\n");
+    printf("\nType in 2 dates and it'll show how many days there are between them!\n\n");
     printf("Please submit a date in the format 'dd/mm/yyyy': ");
     scanf("%d/%d/%d", &first_date.day, &first_date.month, &first_date.year);
     printf("Now submit another date in the format 'dd/mm/yyyy': ");

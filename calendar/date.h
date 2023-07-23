@@ -1,23 +1,46 @@
 #include <stdio.h>
 typedef struct date date;
 
+/// Utils
+
 struct date {
     int day;
     int month;
     int year;
 };
 
-// Each day will have a positive integer assigned to them starting on 01/01/1583
-// Day 0: 01/01/1583 (value = 0)
-// Day 1: 02/01/1583 (value = 1)
-// and so on...
-// this number means the amount of days between a date and 01/01/1583
+char weekdays [][10] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+char monthname[][10] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 int abs(int num) {
     if(num > 0)
         return num;
     return -num;
 }
+
+/// Date functions
+
+char* getWeekDay(date d) {
+    // 01/01/1583 was on Saturday. We'll continue the sequence based of off this
+    int day = d.day;
+    int days_per_week = 7;
+    int index = (6 + getDateValue(d)) % days_per_week;
+    return weekdays[index];
+}
+
+char* getWeekDayNumber(date d) {
+    // 0 = Sunday, 1 = Monday, and so on
+    int day = d.day;
+    int days_per_week = 7;
+    int index = (6 + getDateValue(d)) % days_per_week;
+    return index;
+}
+
+// Each day will have a positive integer assigned to them starting on 01/01/1583
+// Day 0: 01/01/1583 (value = 0)
+// Day 1: 02/01/1583 (value = 1)
+// and so on
+// this number means the amount of days between a date and 01/01/1583
 
 int isLeapYear(date d) {
     int year = d.year;
@@ -66,15 +89,29 @@ int getDateValue(date d) {
     return value;
 }
 
-char weekdays[][10] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-// weekdays[0] = "Sunday"
-// weekdays[1] = "Monday"
-// and so on...
+/// Visuals
 
-char* getWeekDay(date d) {
-    // 01/01/1583 was on Saturday. We'll continue the sequence based of off this
-    int day = d.day;
-    int days_per_week = 7;
-    int index = (6 + getDateValue(d)) % days_per_week;
-    return weekdays[index];
+void print_calendar(date d) {
+    d.day = 1;
+    int calendar[42] = {};
+    int i;
+    int starting_day = getWeekDayNumber(d);
+    int num_days = getDaysInMonth(d);
+    for(i = 0; i < num_days; i++)
+        calendar[i + starting_day] = i+1;
+    // Printing
+    system("cls");
+    printf("       %s, %d\n\n", monthname[d.month-1], d.year);
+    for(i = 0; i < 7; i++)
+        printf("   %c", weekdays[i][0]);
+    for(i = 0; i < 42; i++) {
+        if(i%7 == 0)
+            printf("\n  ");
+        if(calendar[i] == 0)
+            printf("  ");
+        else
+            printf("%02d", calendar[i]);
+        printf("  ");
+    }
+    printf("\n\n");
 }
