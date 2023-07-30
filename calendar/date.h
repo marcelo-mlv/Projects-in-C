@@ -20,21 +20,7 @@ int abs(int num) {
 
 /// Date functions
 
-char* getWeekDay(date d) {
-    // 01/01/1583 was on Saturday. We'll continue the sequence based of off this
-    int day = d.day;
-    int days_per_week = 7;
-    int index = (6 + getDateValue(d)) % days_per_week;
-    return weekdays[index];
-}
 
-char* getWeekDayNumber(date d) {
-    // 0 = Sunday, 1 = Monday, and so on
-    int day = d.day;
-    int days_per_week = 7;
-    int index = (6 + getDateValue(d)) % days_per_week;
-    return index;
-}
 
 // Each day will have a positive integer assigned to them starting on 01/01/1583
 // Day 0: 01/01/1583 (value = 0)
@@ -69,6 +55,13 @@ int getDaysInYear(date d) {
     return 365 + isLeapYear(d);
 }
 
+int isDateValid(date d) {
+    // Checks if this date actually exists
+    if(d.year < 1583 || d.day < 1 || d.day > getDaysInMonth(d) || d.month < 1 || d.month > 12)
+        return 0;
+    return 1;
+}
+
 int getDateValue(date d) {
     int i;
     int value = 0;
@@ -87,6 +80,22 @@ int getDateValue(date d) {
         d.year--;
     }
     return value;
+}
+
+char* getWeekDay(date d) {
+    // 01/01/1583 was on Saturday. We'll continue the sequence based of off this
+    int day = d.day;
+    int days_per_week = 7;
+    int index = (6 + getDateValue(d)) % days_per_week;
+    return weekdays[index];
+}
+
+int getWeekDayNumber(date d) {
+    // 0 = Sunday, 1 = Monday, and so on
+    int day = d.day;
+    int days_per_week = 7;
+    int index = (6 + getDateValue(d)) % days_per_week;
+    return index;
 }
 
 /// Visuals

@@ -11,14 +11,20 @@ int main() {
     printf("\nCalendar display! Just type in a date and we'll show the respective month like in a calendar!\n\n");
     printf("Please submit a date in the format 'dd/mm/yyyy': ");
     scanf("%d/%d/%d", &first_date.day, &first_date.month, &first_date.year);
+    while(!isDateValid(first_date)) {
+        printf("Invalid input! Try again: ");
+        scanf("%d/%d/%d", &first_date.day, &first_date.month, &first_date.year);
+    }
     while(1) {
         print_calendar(first_date);
         printf("press 'x' to go to the next month\n");
         printf("press 'z' to go to the previous month\n");
+        printf("press 'c' to submit another date\n");
         printf("press 'q' to quit\n");
-        char tecla, tmp;
+        char tecla, // Get keyboard input to navigate
+             tmp;   // Get newline characters from the input
         scanf("%c%c", &tmp, &tecla);
-        while(tecla != 'x' && tecla != 'z' && tecla != 'q') {
+        while(tecla != 'x' && tecla != 'z' && tecla != 'q' && tecla != 'c') {
             printf("Invalid key! Try again\n");
             scanf("%c%c", &tmp, &tecla);
         }
@@ -37,11 +43,19 @@ int main() {
                     first_date.year--;
                 }
                 break;
-            case 'q':
+            case 'c':
                 system("cls");
+                printf("Calendar display! Just type in a date and we'll show the respective month like in a calendar!\n\n");
+                printf("Please submit a date in the format 'dd/mm/yyyy': ");
+                scanf("%d/%d/%d", &first_date.day, &first_date.month, &first_date.year);
+                while(!isDateValid(first_date)) {
+                    printf("Invalid input! Try again: ");
+                    scanf("%d/%d/%d", &first_date.day, &first_date.month, &first_date.year);
+                }
+                break;
+            case 'q':
                 return 0;
         }
     }
-    return 0;
 }
 
