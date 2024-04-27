@@ -1,7 +1,6 @@
 #include "info.h"
 
 
-/// Bubble sort by ID
 void bubbleSortID(node **v, int n) {
     int i, j;
     node *temp;
@@ -18,7 +17,6 @@ void bubbleSortID(node **v, int n) {
     }
 }
 
-/// Bubble sort by salary
 void bubbleSortSal(node **v, int n) {
     int i, j;
     node *temp;
@@ -35,7 +33,6 @@ void bubbleSortSal(node **v, int n) {
     }
 }
 
-/// Bubble sort by age
 void bubbleSortAge(node **v, int n) {
     int i, j;
     node *temp;
@@ -52,7 +49,6 @@ void bubbleSortAge(node **v, int n) {
     }
 }
 
-/// Bubble sort by name
 void bubbleSortName(node **v, int n) {
     int i, j;
     node *temp;
