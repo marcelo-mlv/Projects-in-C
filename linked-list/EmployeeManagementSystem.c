@@ -146,7 +146,8 @@ void menu() {
             case 3: sortMenu();  break;
             case 0: endProgram = 1; break;
             default:
-                printf("Invalid number! Try again:");
+                system("cls");
+                printf("Invalid number! Try again\n");
         }
     }
 }
