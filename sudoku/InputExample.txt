@@ -1,4 +1,4 @@
-Use only one grid each time you run the program
+Use only one example each time you run the program
 
 0 3 4 8 5 0 1 6 0
 6 0 0 0 0 0 0 0 9
