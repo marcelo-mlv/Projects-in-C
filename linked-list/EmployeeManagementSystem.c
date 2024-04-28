@@ -98,6 +98,7 @@ void sortMenu() {
     }
 
     int endLoop = 0;
+    int selector;
     while(endLoop == 0) {
         system("cls");
         endLoop = 1;
@@ -109,10 +110,10 @@ void sortMenu() {
         int command;
         scanf("%d", &command);
         switch(command) {
-            case 1: bubbleSortID(v, CurrentEmployees);   break;
-            case 2: bubbleSortName(v, CurrentEmployees); break;
-            case 3: bubbleSortAge(v, CurrentEmployees);  break;
-            case 4: bubbleSortSal(v, CurrentEmployees);  break;
+            case 1: selector = 1; break;
+            case 2: selector = 2; break;
+            case 3: selector = 3; break;
+            case 4: selector = 4; break;
             default:
                 endLoop = 0;
                 system("cls");
@@ -121,6 +122,7 @@ void sortMenu() {
             // Sorting functions in file sorting.h
         }
     }
+    bubbleSort(v, CurrentEmployees, selector);
     system("cls");
     printList(v);
     free(v);
